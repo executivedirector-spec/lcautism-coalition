@@ -162,6 +162,11 @@
       </button>
     </div>
   </nav>
+  <nav class="breadcrumb" aria-label="Breadcrumb">
+    <a href="../index.html">Home</a>
+    <span class="breadcrumb__sep" aria-hidden="true">&rsaquo;</span>
+    <span class="breadcrumb__current" aria-current="page">Privacy</span>
+  </nav>
 
   <!-- Language Toggle -->
   <div class="lang-toggle">
@@ -351,7 +356,28 @@
     </div>
   </section>
 
-  <!-- ========== FOOTER ========== -->
+  
+  <!-- ========== NEWSLETTER ========== -->
+  <section class="newsletter section" id="newsletter">
+    <div class="newsletter__inner">
+      <h2 class="newsletter__title">Stay in the loop</h2>
+      <p class="newsletter__lead">One short email a month &mdash; program updates, upcoming events, ways to help. No spam, unsubscribe anytime.</p>
+      <form class="newsletter__form" action="https://api.web3forms.com/submit" method="POST" novalidate>
+        <input type="hidden" name="access_key" value="c7341c41-b260-4ef0-a8c3-69180da5de8f">
+        <input type="hidden" name="subject" value="LCAC newsletter signup">
+        <input type="hidden" name="from_name" value="LCAC Newsletter">
+        <input type="hidden" name="_form_type" value="Newsletter">
+        <input type="text" name="_gotcha" style="display:none" aria-hidden="true" tabindex="-1">
+        <label for="newsletter-name" class="visually-hidden">First name</label>
+        <input id="newsletter-name" type="text" name="first_name" placeholder="First name" class="newsletter__input" required>
+        <label for="newsletter-email" class="visually-hidden">Email address</label>
+        <input id="newsletter-email" type="email" name="email" placeholder="you@example.com" class="newsletter__input" required>
+        <button type="submit" class="btn btn--primary newsletter__btn">Subscribe</button>
+      </form>
+      <p id="newsletter-form-status" class="newsletter__status" role="status" aria-live="polite"></p>
+    </div>
+  </section>
+<!-- ========== FOOTER ========== -->
   <footer class="footer">
     <div class="container">
       <div class="footer__grid">
