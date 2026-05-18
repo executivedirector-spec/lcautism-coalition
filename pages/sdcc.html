@@ -1,10 +1,10 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Spectrum & Development Community Center | Lewis County Autism Coalition</title>
-  <meta name="description" content="The Spectrum & Development Community Center in Napavine, WA — a community-built space for autistic, neurodiverse, and developmentally disabled individuals and their families to find connection, support, and empowerment.">
+  <meta name="description" content="The Spectrum & Development Community Center in Napavine, WA â€” a community-built space for autistic, neurodiverse, and developmentally disabled individuals and their families to find connection, support, and empowerment.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
@@ -27,9 +27,15 @@
       }
     });
     gtag("js", new Date());
-    gtag("config", "[[GA4_MEASUREMENT_ID]]", { "anonymize_ip": true });
+    var __ga4Id = "[[GA4_MEASUREMENT_ID]]";
+    if (__ga4Id.indexOf("[[") === -1) {
+      gtag("config", __ga4Id, { "anonymize_ip": true });
+      var s = document.createElement("script");
+      s.async = true;
+      s.src = "https://www.googletagmanager.com/gtag/js?id=" + __ga4Id;
+      document.head.appendChild(s);
+    }
   </script>
-  <script async src="https://www.googletagmanager.com/gtag/js?id=[[GA4_MEASUREMENT_ID]]"></script>
 
 </head>
 <body>
@@ -56,7 +62,7 @@
         <a href="volunteer.html" class="navbar__link">Volunteer</a>
         <a href="contact.html" class="navbar__link">Contact</a>
         <div class="navbar__more">
-          <button class="navbar__more-btn" aria-haspopup="true" aria-expanded="false">More <span aria-hidden="true">▾</span></button>
+          <button class="navbar__more-btn" aria-haspopup="true" aria-expanded="false">More <span aria-hidden="true">â–¾</span></button>
           <div class="navbar__more-menu" role="menu">
             <a href="leadership.html" role="menuitem">Leadership</a>
             <a href="partners.html" role="menuitem">Community Partners</a>
@@ -68,7 +74,7 @@
             <a href="summercamp.html" role="menuitem">Summer Camp</a>
             <a href="conference.html" role="menuitem">SWWA Conference</a>
             <a href="sponsor.html" role="menuitem">Sponsorship</a>
-            <a href="espanol.html" role="menuitem">Recursos en Español</a>
+            <a href="espanol.html" role="menuitem">Recursos en EspaÃ±ol</a>
           </div>
         </div>
       </div>
@@ -101,7 +107,7 @@
     <a href="statewide.html" class="mobile-menu__link">Statewide Collaboration</a>
     <a href="partners.html" class="mobile-menu__link">Community Partners</a>
     <a href="contact.html" class="mobile-menu__link">Contact Us</a>
-    <a href="espanol.html" class="mobile-menu__link">Recursos en Español</a>
+    <a href="espanol.html" class="mobile-menu__link">Recursos en EspaÃ±ol</a>
     <div class="mobile-menu__cta">
       <a href="donate.html" class="btn btn--accent btn--lg">Donate Today</a>
       <a href="sponsor.html" class="btn btn--outline btn--lg">Become a Sponsor</a>
@@ -182,7 +188,7 @@
             The Spectrum & Development Community Center began as a shared dream between LCAC Executive Director Michelle Whitlow, M.S., and Chanel Patana, PNP, of Lewis County Pediatrics & Family Medicine, rooted in a mutual commitment to improving health equity for rural families.
           </p>
           <p>
-            The facility is home to both Lewis County Pediatrics & Family Medicine and the Spectrum & Development Community Center (powered by the Lewis County Autism Coalition) — two distinct organizations with one shared purpose: creating a seamless pathway from care to community.
+            The facility is home to both Lewis County Pediatrics & Family Medicine and the Spectrum & Development Community Center (powered by the Lewis County Autism Coalition) â€” two distinct organizations with one shared purpose: creating a seamless pathway from care to community.
           </p>
           <p>
             The Center offers coordinated, person-centered supports, welcoming programming, peer connection, and practical navigation for individuals and families impacted by autism, neurodivergence, and developmental disabilities.
@@ -243,7 +249,7 @@
           Born from a beautifully coincidental meeting of the minds between LCAC Executive Director Michelle Whitlow, M.S., and Chanel Patana, PNP. Dr. Real McGraw and his family (Napavine Family Chiropractic) owned an adjacent lot and offered support, building the new facility to house this shared vision.
         </p>
         <p class="section-subtitle" style="max-width: 800px; margin-left: auto; margin-right: auto;">
-          The result: a 5,000 sq ft community center at 375 Linhart Ave NE, Suite B, Napavine, Washington — on the right side of the building — where care and community meet under one roof.
+          The result: a 5,000 sq ft community center at 375 Linhart Ave NE, Suite B, Napavine, Washington â€” on the right side of the building â€” where care and community meet under one roof.
         </p>
       </div>
     </div>
@@ -285,7 +291,7 @@
             <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
           </div>
           <h3 class="card__title">DDA Billable Services</h3>
-          <p class="card__text">Day activity options including respite, recreational programming, and peer mentor services — available through DDA billing for eligible individuals.</p>
+          <p class="card__text">Day activity options including respite, recreational programming, and peer mentor services â€” available through DDA billing for eligible individuals.</p>
         </div>
 
         <!-- Sensory Room -->
@@ -294,7 +300,7 @@
             <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
           </div>
           <h3 class="card__title">Wellpoint Restorative Space</h3>
-          <p class="card__text">A dedicated sensory room sponsored by Wellpoint of Washington Insurance — a calming, restorative environment designed for regulation and comfort.</p>
+          <p class="card__text">A dedicated sensory room sponsored by Wellpoint of Washington Insurance â€” a calming, restorative environment designed for regulation and comfort.</p>
         </div>
 
         <!-- Tech & Art Hub -->
@@ -303,7 +309,7 @@
             <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
           </div>
           <h3 class="card__title">Tech & Art Empowerment Hub</h3>
-          <p class="card__text">Digital literacy coaching, a creative arts corner, and microenterprise project support — empowering individuals through technology and creative expression.</p>
+          <p class="card__text">Digital literacy coaching, a creative arts corner, and microenterprise project support â€” empowering individuals through technology and creative expression.</p>
         </div>
 
         <!-- Open Program Space -->
@@ -312,7 +318,7 @@
             <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
           </div>
           <h3 class="card__title">Open Program Space</h3>
-          <p class="card__text">Flexible space for community events, social groups, educational programming, and recreational activities — open for the whole community to gather and connect.</p>
+          <p class="card__text">Flexible space for community events, social groups, educational programming, and recreational activities â€” open for the whole community to gather and connect.</p>
         </div>
       </div>
     </div>

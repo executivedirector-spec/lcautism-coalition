@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -142,9 +142,15 @@
       }
     });
     gtag("js", new Date());
-    gtag("config", "[[GA4_MEASUREMENT_ID]]", { "anonymize_ip": true });
+    var __ga4Id = "[[GA4_MEASUREMENT_ID]]";
+    if (__ga4Id.indexOf("[[") === -1) {
+      gtag("config", __ga4Id, { "anonymize_ip": true });
+      var s = document.createElement("script");
+      s.async = true;
+      s.src = "https://www.googletagmanager.com/gtag/js?id=" + __ga4Id;
+      document.head.appendChild(s);
+    }
   </script>
-  <script async src="https://www.googletagmanager.com/gtag/js?id=[[GA4_MEASUREMENT_ID]]"></script>
 
 </head>
 <body>
@@ -171,7 +177,7 @@
         <a href="volunteer.html" class="navbar__link">Volunteer</a>
         <a href="contact.html" class="navbar__link active">Contact</a>
         <div class="navbar__more">
-          <button class="navbar__more-btn" aria-haspopup="true" aria-expanded="false">More <span aria-hidden="true">▾</span></button>
+          <button class="navbar__more-btn" aria-haspopup="true" aria-expanded="false">More <span aria-hidden="true">â–¾</span></button>
           <div class="navbar__more-menu" role="menu">
             <a href="leadership.html" role="menuitem">Leadership</a>
             <a href="partners.html" role="menuitem">Community Partners</a>
@@ -183,7 +189,7 @@
             <a href="summercamp.html" role="menuitem">Summer Camp</a>
             <a href="conference.html" role="menuitem">SWWA Conference</a>
             <a href="sponsor.html" role="menuitem">Sponsorship</a>
-            <a href="espanol.html" role="menuitem">Recursos en Español</a>
+            <a href="espanol.html" role="menuitem">Recursos en EspaÃ±ol</a>
           </div>
         </div>
       </div>
@@ -216,7 +222,7 @@
     <a href="statewide.html" class="mobile-menu__link">Statewide Collaboration</a>
     <a href="partners.html" class="mobile-menu__link">Community Partners</a>
     <a href="contact.html" class="mobile-menu__link">Contact Us</a>
-    <a href="espanol.html" class="mobile-menu__link">Recursos en Español</a>
+    <a href="espanol.html" class="mobile-menu__link">Recursos en EspaÃ±ol</a>
     <div class="mobile-menu__cta">
       <a href="donate.html" class="btn btn--accent btn--lg">Donate Today</a>
       <a href="sponsor.html" class="btn btn--outline btn--lg">Become a Sponsor</a>
@@ -317,10 +323,10 @@
         
         <form class="contact-form" action="https://api.web3forms.com/submit" method="POST" data-form-name="Contact">
           <input type="hidden" name="access_key" value="4aa1988f-ab2b-4f29-94c6-37d5a651298e">
-          <input type="hidden" name="subject" value="LCAC Website — Contact form submission">
+          <input type="hidden" name="subject" value="LCAC Website â€” Contact form submission">
           <input type="hidden" name="from_name" value="LCAC Website">
           <input type="hidden" name="botcheck" value="">
-          <input type="hidden" name="_subject" value="New contact form submission — LCAC website">
+          <input type="hidden" name="_subject" value="New contact form submission â€” LCAC website">
           <input type="hidden" name="_form_type" value="Contact">
           <!-- Honeypot spam protection: bots fill this, humans don't see it -->
           <input type="text" name="_gotcha" style="display:none" aria-hidden="true" tabindex="-1">

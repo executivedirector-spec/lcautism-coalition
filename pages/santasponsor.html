@@ -1,10 +1,10 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Santa's Secret Sensory Shop Sponsor | Lewis County Autism Coalition</title>
-  <meta name="description" content="Sponsor Santa's Secret Sensory Shop — LCAC's annual December sensory-friendly shopping experience for neurodiverse children and families in Lewis County.">
+  <meta name="description" content="Sponsor Santa's Secret Sensory Shop â€” LCAC's annual December sensory-friendly shopping experience for neurodiverse children and families in Lewis County.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
@@ -166,9 +166,15 @@
       }
     });
     gtag("js", new Date());
-    gtag("config", "[[GA4_MEASUREMENT_ID]]", { "anonymize_ip": true });
+    var __ga4Id = "[[GA4_MEASUREMENT_ID]]";
+    if (__ga4Id.indexOf("[[") === -1) {
+      gtag("config", __ga4Id, { "anonymize_ip": true });
+      var s = document.createElement("script");
+      s.async = true;
+      s.src = "https://www.googletagmanager.com/gtag/js?id=" + __ga4Id;
+      document.head.appendChild(s);
+    }
   </script>
-  <script async src="https://www.googletagmanager.com/gtag/js?id=[[GA4_MEASUREMENT_ID]]"></script>
 </head>
 <body>
   <a href="#main" class="skip-link">Skip to main content</a>
@@ -193,7 +199,7 @@
         <a href="volunteer.html" class="navbar__link">Volunteer</a>
         <a href="contact.html" class="navbar__link">Contact</a>
         <div class="navbar__more">
-          <button class="navbar__more-btn" aria-haspopup="true" aria-expanded="false">More <span aria-hidden="true">▾</span></button>
+          <button class="navbar__more-btn" aria-haspopup="true" aria-expanded="false">More <span aria-hidden="true">â–¾</span></button>
           <div class="navbar__more-menu" role="menu">
             <a href="leadership.html" role="menuitem">Leadership</a>
             <a href="partners.html" role="menuitem">Community Partners</a>
@@ -205,7 +211,7 @@
             <a href="summercamp.html" role="menuitem">Summer Camp</a>
             <a href="conference.html" role="menuitem">SWWA Conference</a>
             <a href="sponsor.html" role="menuitem">Sponsorship</a>
-            <a href="espanol.html" role="menuitem">Recursos en Español</a>
+            <a href="espanol.html" role="menuitem">Recursos en EspaÃ±ol</a>
           </div>
         </div>
       </div>
@@ -232,7 +238,7 @@
     <a href="statewide.html" class="mobile-menu__link">Statewide Collaboration</a>
     <a href="partners.html" class="mobile-menu__link">Community Partners</a>
     <a href="contact.html" class="mobile-menu__link">Contact Us</a>
-    <a href="espanol.html" class="mobile-menu__link">Recursos en Español</a>
+    <a href="espanol.html" class="mobile-menu__link">Recursos en EspaÃ±ol</a>
     <div class="mobile-menu__cta">
       <a href="donate.html" class="btn btn--accent btn--lg">Donate Today</a>
       <a href="sponsor.html" class="btn btn--outline btn--lg">Become a Sponsor</a>
@@ -244,7 +250,7 @@
     <div class="container fade-in">
       <span class="section-label">Holiday Magic for Every Child</span>
       <h1 class="page-header__title">Santa's <span class="highlight">Secret Sensory Shop</span> Sponsor</h1>
-      <p class="page-header__subtitle">Help us create a sensory-friendly holiday shopping experience where neurodiverse children and families can celebrate the season — calmly, comfortably, joyfully.</p>
+      <p class="page-header__subtitle">Help us create a sensory-friendly holiday shopping experience where neurodiverse children and families can celebrate the season â€” calmly, comfortably, joyfully.</p>
     </div>
   </section>
 
@@ -302,7 +308,7 @@
           <span class="sponsor-card__icon">&#127873;</span>
           <h3 class="sponsor-card__name">Gift Wrapper</h3>
           <p class="sponsor-card__price">$200</p>
-          <p class="sponsor-card__desc">Logo on event signage and a social media shout-out — your support helps us provide gifts and supplies for the day.</p>
+          <p class="sponsor-card__desc">Logo on event signage and a social media shout-out â€” your support helps us provide gifts and supplies for the day.</p>
         </div>
 
         <div class="sponsor-card">
@@ -326,7 +332,7 @@
 
       <form class="sponsor-form fade-in" action="https://api.web3forms.com/submit" method="POST" data-form-name="SantaSponsor">
         <input type="hidden" name="access_key" value="c7341c41-b260-4ef0-a8c3-69180da5de8f">
-        <input type="hidden" name="subject" value="LCAC Website — Santa's Secret Sensory Shop sponsor inquiry">
+        <input type="hidden" name="subject" value="LCAC Website â€” Santa's Secret Sensory Shop sponsor inquiry">
         <input type="hidden" name="from_name" value="LCAC Website">
         <input type="hidden" name="botcheck" value="">
         <input type="hidden" name="_form_type" value="SantaSponsor">

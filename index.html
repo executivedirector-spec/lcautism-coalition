@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -10,7 +10,7 @@
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://www.lcautism.org">
   <meta property="og:image" content="https://www.lcautism.org/assets/images/sdcc-ribbon-cutting-2025.jpg">
-  <meta property="og:image:alt" content="Lewis County Autism Coalition — community at the SDCC ribbon cutting in Napavine, WA">
+  <meta property="og:image:alt" content="Lewis County Autism Coalition â€” community at the SDCC ribbon cutting in Napavine, WA">
   <meta name="twitter:image" content="https://www.lcautism.org/assets/images/sdcc-ribbon-cutting-2025.jpg">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Lewis County Autism Coalition">
@@ -37,9 +37,15 @@
       }
     });
     gtag("js", new Date());
-    gtag("config", "[[GA4_MEASUREMENT_ID]]", { "anonymize_ip": true });
+    var __ga4Id = "[[GA4_MEASUREMENT_ID]]";
+    if (__ga4Id.indexOf("[[") === -1) {
+      gtag("config", __ga4Id, { "anonymize_ip": true });
+      var s = document.createElement("script");
+      s.async = true;
+      s.src = "https://www.googletagmanager.com/gtag/js?id=" + __ga4Id;
+      document.head.appendChild(s);
+    }
   </script>
-  <script async src="https://www.googletagmanager.com/gtag/js?id=[[GA4_MEASUREMENT_ID]]"></script>
 
 </head>
 <body>
@@ -66,7 +72,7 @@
         <a href="pages/volunteer.html" class="navbar__link">Volunteer</a>
         <a href="pages/contact.html" class="navbar__link">Contact</a>
         <div class="navbar__more">
-          <button class="navbar__more-btn" aria-haspopup="true" aria-expanded="false">More <span aria-hidden="true">▾</span></button>
+          <button class="navbar__more-btn" aria-haspopup="true" aria-expanded="false">More <span aria-hidden="true">â–¾</span></button>
           <div class="navbar__more-menu" role="menu">
             <a href="pages/leadership.html" role="menuitem">Leadership</a>
             <a href="pages/partners.html" role="menuitem">Community Partners</a>
@@ -78,7 +84,7 @@
             <a href="pages/summercamp.html" role="menuitem">Summer Camp</a>
             <a href="pages/conference.html" role="menuitem">SWWA Conference</a>
             <a href="pages/sponsor.html" role="menuitem">Sponsorship</a>
-            <a href="pages/espanol.html" role="menuitem">Recursos en Español</a>
+            <a href="pages/espanol.html" role="menuitem">Recursos en EspaÃ±ol</a>
           </div>
         </div>
       </div>
@@ -111,7 +117,7 @@
     <a href="pages/statewide.html" class="mobile-menu__link">Statewide Collaboration</a>
     <a href="pages/partners.html" class="mobile-menu__link">Community Partners</a>
     <a href="pages/contact.html" class="mobile-menu__link">Contact Us</a>
-    <a href="pages/espanol.html" class="mobile-menu__link">Recursos en Español</a>
+    <a href="pages/espanol.html" class="mobile-menu__link">Recursos en EspaÃ±ol</a>
     <div class="mobile-menu__cta">
       <a href="pages/donate.html" class="btn btn--accent btn--lg">Donate Today</a>
       <a href="pages/sponsor.html" class="btn btn--outline btn--lg">Become a Sponsor</a>
@@ -322,7 +328,7 @@
         <span class="section-label">Support & Connection</span>
         <h2 class="section-title">Programs by Age Group</h2>
         <p class="section-subtitle">
-          Whether you're an adult looking for connection, a teen seeking a peer mentor, or a parent finding programs for your child — we have a place for you.
+          Whether you're an adult looking for connection, a teen seeking a peer mentor, or a parent finding programs for your child â€” we have a place for you.
         </p>
       </div>
 
@@ -432,7 +438,7 @@
             <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
           </div>
           <h3 class="card__title">Project Guardian</h3>
-          <p class="card__text">A free City of Centralia program that helps first responders quickly locate and assist individuals at risk of wandering — including those on the autism spectrum.</p>
+          <p class="card__text">A free City of Centralia program that helps first responders quickly locate and assist individuals at risk of wandering â€” including those on the autism spectrum.</p>
           <span class="card__link">
             Visit cityofcentralia.com
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
@@ -445,7 +451,7 @@
             <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 21 18 0"/><path d="M5 21V7l8-4v18"/><path d="M19 21V11l-6-4"/><path d="M9 9v.01"/><path d="M9 12v.01"/><path d="M9 15v.01"/><path d="M9 18v.01"/></svg>
           </div>
           <h3 class="card__title">DDCS Contracted Services</h3>
-          <p class="card__text">Developmental Disability Community Services (formerly DDA) — Washington State's primary support program for individuals with developmental disabilities and their families.</p>
+          <p class="card__text">Developmental Disability Community Services (formerly DDA) â€” Washington State's primary support program for individuals with developmental disabilities and their families.</p>
           <span class="card__link">
             Visit dshs.wa.gov/dda
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
@@ -458,7 +464,7 @@
             <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
           </div>
           <h3 class="card__title">Cultivating Belonging</h3>
-          <p class="card__text">Our county-wide education and awareness initiative — building a Lewis County where every neurodiverse person feels welcome, included, and valued.</p>
+          <p class="card__text">Our county-wide education and awareness initiative â€” building a Lewis County where every neurodiverse person feels welcome, included, and valued.</p>
           <span class="card__link">
             Learn more about the initiative
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
@@ -553,7 +559,7 @@
           
           <form action="https://api.web3forms.com/submit" method="POST" data-form-name="Contact-Home">
           <input type="hidden" name="access_key" value="4aa1988f-ab2b-4f29-94c6-37d5a651298e">
-          <input type="hidden" name="subject" value="LCAC Website — Home page contact form">
+          <input type="hidden" name="subject" value="LCAC Website â€” Home page contact form">
           <input type="hidden" name="from_name" value="LCAC Website">
           <input type="hidden" name="botcheck" value="">
             <input type="hidden" name="_subject" value="New message from LCAC homepage">
