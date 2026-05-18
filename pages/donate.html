@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -148,9 +148,15 @@
       }
     });
     gtag("js", new Date());
-    gtag("config", "[[GA4_MEASUREMENT_ID]]", { "anonymize_ip": true });
+    var __ga4Id = "[[GA4_MEASUREMENT_ID]]";
+    if (__ga4Id.indexOf("[[") === -1) {
+      gtag("config", __ga4Id, { "anonymize_ip": true });
+      var s = document.createElement("script");
+      s.async = true;
+      s.src = "https://www.googletagmanager.com/gtag/js?id=" + __ga4Id;
+      document.head.appendChild(s);
+    }
   </script>
-  <script async src="https://www.googletagmanager.com/gtag/js?id=[[GA4_MEASUREMENT_ID]]"></script>
 
 </head>
 <body class="page-donate">
@@ -177,7 +183,7 @@
         <a href="volunteer.html" class="navbar__link">Volunteer</a>
         <a href="contact.html" class="navbar__link">Contact</a>
         <div class="navbar__more">
-          <button class="navbar__more-btn" aria-haspopup="true" aria-expanded="false">More <span aria-hidden="true">▾</span></button>
+          <button class="navbar__more-btn" aria-haspopup="true" aria-expanded="false">More <span aria-hidden="true">â–¾</span></button>
           <div class="navbar__more-menu" role="menu">
             <a href="leadership.html" role="menuitem">Leadership</a>
             <a href="partners.html" role="menuitem">Community Partners</a>
@@ -189,7 +195,7 @@
             <a href="summercamp.html" role="menuitem">Summer Camp</a>
             <a href="conference.html" role="menuitem">SWWA Conference</a>
             <a href="sponsor.html" role="menuitem">Sponsorship</a>
-            <a href="espanol.html" role="menuitem">Recursos en Español</a>
+            <a href="espanol.html" role="menuitem">Recursos en EspaÃ±ol</a>
           </div>
         </div>
       </div>
@@ -222,7 +228,7 @@
     <a href="statewide.html" class="mobile-menu__link">Statewide Collaboration</a>
     <a href="partners.html" class="mobile-menu__link">Community Partners</a>
     <a href="contact.html" class="mobile-menu__link">Contact Us</a>
-    <a href="espanol.html" class="mobile-menu__link">Recursos en Español</a>
+    <a href="espanol.html" class="mobile-menu__link">Recursos en EspaÃ±ol</a>
     <div class="mobile-menu__cta">
       <a href="donate.html" class="btn btn--accent btn--lg">Donate Today</a>
       <a href="sponsor.html" class="btn btn--outline btn--lg">Become a Sponsor</a>
@@ -307,13 +313,16 @@
 
         <div style="text-align: center; margin-top: var(--space-xl);">
           <!--
-            DONATION BUTTON — points to LCAC's existing Wix donation flow at lcautism.org.
-            This keeps their current donation processor (PayPal/Square already set up on Wix)
-            active during and after the site transition. No change to donor experience or
-            payment handling is required. When LCAC is ready, this can later be swapped for
-            a direct Stripe Payment Link.
+            DONATION BUTTON.
+            TEMPORARY: opens a pre-filled email to LCAC's executive director so the
+            donor isn't dropped. Replace this href with the real Stripe Payment Link
+            (or PayPal direct URL) the moment LCAC provides it.
+
+            Why not lcautism.org/donate: that URL routed to LCAC's old Wix donation
+            page. After DNS flips to Vercel, that URL becomes this same /donate page,
+            which makes the button loop back to itself.
           -->
-          <a href="https://www.lcautism.org/donate" target="_blank" rel="noopener noreferrer" class="btn btn--accent btn--lg" id="donate-button">Donate Now</a>
+          <a href="mailto:executivedirector@lcautism.org?subject=I%27d%20like%20to%20donate%20to%20LCAC&body=Hi%20Michelle%2C%0A%0AI%27d%20like%20to%20donate%20to%20Lewis%20County%20Autism%20Coalition.%20What%27s%20the%20best%20way%20to%20send%20my%20gift%3F%0A%0AThanks%21" class="btn btn--accent btn--lg" id="donate-button">Donate Now</a>
         </div>
 
         <p class="donate-note">
