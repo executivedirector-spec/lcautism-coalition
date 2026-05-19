@@ -259,7 +259,7 @@ document.addEventListener('DOMContentLoaded', () => {
           <strong>We value your privacy.</strong>
           We use essential cookies to make this site work, and optional analytics cookies
           to understand how our site is used (you can decline). For details, see our
-          <a href="/pages/privacy.html" style="text-decoration: underline;">Privacy Policy</a>.
+          <a href="/privacy" style="text-decoration: underline;">Privacy Policy</a>.
         </div>
         <div class="cookie-banner__actions">
           <button type="button" class="cookie-banner__btn cookie-banner__btn--secondary" data-action="decline">Essential Only</button>

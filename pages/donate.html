@@ -183,7 +183,7 @@
         <a href="volunteer.html" class="navbar__link">Volunteer</a>
         <a href="contact.html" class="navbar__link">Contact</a>
         <div class="navbar__more">
-          <button class="navbar__more-btn" aria-haspopup="true" aria-expanded="false">More <span aria-hidden="true">â–¾</span></button>
+          <button class="navbar__more-btn" aria-haspopup="true" aria-expanded="false">More <span aria-hidden="true">▾</span></button>
           <div class="navbar__more-menu" role="menu">
             <a href="leadership.html" role="menuitem">Leadership</a>
             <a href="partners.html" role="menuitem">Community Partners</a>
@@ -195,7 +195,7 @@
             <a href="summercamp.html" role="menuitem">Summer Camp</a>
             <a href="conference.html" role="menuitem">SWWA Conference</a>
             <a href="sponsor.html" role="menuitem">Sponsorship</a>
-            <a href="espanol.html" role="menuitem">Recursos en EspaÃ±ol</a>
+            <a href="espanol.html" role="menuitem">Recursos en Español</a>
           </div>
         </div>
       </div>
@@ -233,7 +233,7 @@
     <a href="statewide.html" class="mobile-menu__link">Statewide Collaboration</a>
     <a href="partners.html" class="mobile-menu__link">Community Partners</a>
     <a href="contact.html" class="mobile-menu__link">Contact Us</a>
-    <a href="espanol.html" class="mobile-menu__link">Recursos en EspaÃ±ol</a>
+    <a href="espanol.html" class="mobile-menu__link">Recursos en Español</a>
     <div class="mobile-menu__cta">
       <a href="donate.html" class="btn btn--accent btn--lg">Donate Today</a>
       <a href="sponsor.html" class="btn btn--outline btn--lg">Become a Sponsor</a>
@@ -494,5 +494,56 @@
   </a>
 
   <script src="../js/main.js"></script>
+  <script>
+    // Donate button — rebuild the mailto body to include the donor's
+    // selected amount + frequency. Until LCAC provides a real Stripe
+    // Payment Link, the mailto is the stopgap — at minimum it should
+    // capture WHAT the donor intended so Michelle can follow up directly.
+    (function () {
+      var btn = document.getElementById('donate-button');
+      if (!btn) return;
+      var TO = 'executivedirector@lcautism.org';
+      var SUBJECT = 'I’d like to donate to LCAC';
+
+      function pickedAmount() {
+        var el = document.querySelector('input[name="amount"]:checked');
+        return el ? el.value : null;
+      }
+      function pickedFrequency() {
+        var el = document.querySelector('input[name="frequency"]:checked');
+        return el ? el.value : 'once';
+      }
+      function freqLabel(v) {
+        return { once: 'one-time', weekly: 'weekly', monthly: 'monthly', yearly: 'yearly' }[v] || 'one-time';
+      }
+      function buildSentence() {
+        var amt = pickedAmount();
+        var freq = freqLabel(pickedFrequency());
+        if (!amt || amt === 'other') {
+          return 'I’d like to make a ' + freq + ' donation to Lewis County Autism Coalition (I’ll share the amount in my reply).';
+        }
+        return 'I’d like to make a $' + Number(amt).toLocaleString() + ' ' + freq + ' donation to Lewis County Autism Coalition.';
+      }
+      function buildHref() {
+        var lines = [
+          'Hi Michelle,',
+          '',
+          buildSentence(),
+          '',
+          'Please let me know the best way to send my gift (check, online link, etc.).',
+          '',
+          'Thanks!'
+        ];
+        return 'mailto:' + TO +
+          '?subject=' + encodeURIComponent(SUBJECT) +
+          '&body=' + encodeURIComponent(lines.join('\n'));
+      }
+      function refresh() { btn.setAttribute('href', buildHref()); }
+      document.querySelectorAll('input[name="amount"], input[name="frequency"]').forEach(function (el) {
+        el.addEventListener('change', refresh);
+      });
+      refresh();
+    })();
+  </script>
 </body>
 </html>
