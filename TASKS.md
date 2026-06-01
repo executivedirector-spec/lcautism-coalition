@@ -43,6 +43,12 @@ Last updated: 2026-06-01
 - Page currently uses mailto: fallback CTAs
 - **Fix:** Get real public `/viewform` URLs from Google Forms admin → Claude swaps them in
 
+### 🟡 BEN — CRM task tracker
+- Todos currently only live in TASKS.md (a text file in the repo)
+- Michelle and Ben should be able to see and check off tasks from the CRM admin dashboard
+- **Fix:** Add a `tasks` table to `lcac-crm` + a simple Tasks tab in the CRM admin UI
+- **Assigned to, due date, status, notes** — keep it simple
+
 ### 🟡 BEN/MICHELLE — Social media
 - Facebook only confirmed. No Instagram, TikTok, YouTube.
 - Families of neurodiverse kids live on Instagram and TikTok — huge visibility gap
