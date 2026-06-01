@@ -7,6 +7,20 @@ Last updated: 2026-06-01
 
 ---
 
+## 🆕 NEW GAPS — added 2026-06-01
+
+### 🟡 MICHELLE — Add Vercel token to all three computers
+- Preview links (so you can see changes before they go live) require a Vercel token stored in `.env.local`
+- Currently only set up on one machine
+- **Fix:** Log into vercel.com → Account Settings → Tokens → create one token named `lcac-preview` → add it to `.env.local` on each computer:
+  ```
+  VERCEL_TOKEN=your-token-here
+  ```
+- **Computers that need it:** your laptop, this computer, Ben's computer
+- **Why it matters:** Without it, Claude can't drop a clickable preview link in the chat after pushing a change — you'd have to check Vercel manually
+
+---
+
 ## 🆕 NEW GAPS — added 2026-06-01 (strategic audit)
 
 ### 🔴 MICHELLE — Stripe donate link
