@@ -3,7 +3,63 @@
 This file tracks ongoing work on the Lewis County Autism Coalition site.
 **Mom + Ben + Claude all see this.** Updated as items get done or new gaps surface.
 
-Last updated: 2026-05-05
+Last updated: 2026-06-01
+
+---
+
+## 🆕 NEW GAPS — added 2026-06-01 (strategic audit)
+
+### 🔴 BEN — Stripe donate link
+- The `/donate` page on the preview site bounces to the old Wix URL — will infinite-loop after DNS flip
+- **Fix:** Set up Stripe Donate (or existing processor from live Wix site) and update `pages/donate.html` CTA href
+- **Why it matters:** Every person who wants to donate hits a dead end. Highest-revenue fix on the list.
+
+### 🔴 BEN — DNS flip (lcautism.org → Vercel)
+- New site is fully built and deployed at Vercel preview URL
+- Live site is still on Wix/Squarespace at lcautism.org
+- **Fix:** Ben handles DNS transfer per existing plan in this file
+- **Blocker:** Stripe donate link must be live BEFORE this flip
+
+### 🔴 BEN — GA4 Measurement ID
+- Placeholder `[[GA4_MEASUREMENT_ID]]` on every page = zero analytics
+- **Fix:** Get real `G-XXXXXXX` ID from analytics.google.com → Claude does sitewide replace in 5 min
+
+### 🟡 BEN — Email newsletter platform
+- Newsletter signup exists on website but no platform connected (no Mailchimp, Klaviyo, etc.)
+- Every signup currently disappears
+- **Fix:** Pick a platform (Mailchimp free tier works for LCAC's size), connect Web3Forms or direct API
+
+### 🟡 BEN — Recurring giving option
+- No "give monthly" checkbox on donate page
+- Monthly donors are 5x more valuable than one-time
+- **Fix:** Add after Stripe is set up — one checkbox, done in 30 min
+
+### 🟡 MICHELLE — Next dates for recurring events
+- Coalition Meetings, Teen Group, Adult Group, Art with Krystian all show "Next date coming soon"
+- **Fix:** Michelle provides next dates → Claude updates in 5 min each
+
+### 🟡 MICHELLE — Court Support Google Form URLs
+- Page currently uses mailto: fallback CTAs
+- **Fix:** Get real public `/viewform` URLs from Google Forms admin → Claude swaps them in
+
+### 🟡 BEN/MICHELLE — Social media
+- Facebook only confirmed. No Instagram, TikTok, YouTube.
+- Families of neurodiverse kids live on Instagram and TikTok — huge visibility gap
+- **Fix:** Create accounts, then Claude adds social links to footer
+
+### 🟡 MICHELLE — Impact numbers page
+- No public-facing proof of reach (families served, programs running, vests given, etc.)
+- Donors give to proof, not promises
+- **Fix:** Michelle provides real numbers → Claude builds an Impact page in 1 session
+
+### 🟡 MICHELLE — Volunteer form fields
+- Current form: basic name/email only
+- Old Wix form had 18+ fields: interests, availability, skills, signature
+- **Fix:** Michelle confirms what fields she wants → Claude rebuilds the form
+
+### 🟢 MICHELLE — Partner logos
+- 50+ partners listed as text chips, no logos
+- **Fix:** Michelle collects logo files → Claude wires them in
 
 ---
 

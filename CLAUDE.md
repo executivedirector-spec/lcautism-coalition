@@ -8,6 +8,7 @@ This file tells Claude how to behave on this repo. Read it on every session.
 - **Project folder:** `C:\Users\miche\Documents\LCAC\`
 - **Desktop org folder:** `C:\Users\miche\Desktop\Lewis County Autism Coalition\` (meeting notes, budget, events, etc.)
 - **Plan:** $20/month — be token-efficient. Flag any large operations to hand off to Ben.
+- **🚨 Budget burn rule:** Before starting ANY task that involves reading many files, building new pages, running web research across multiple URLs, or making changes across the whole site — STOP and say: "Hey, this is a big job that could use up a lot of your monthly budget. Want me to hand this off to Ben instead?" Tasks like sitewide find-and-replace, building new pages from scratch, deep research reports, or auditing the full codebase = hand to Ben.
 - **Model rule:** Always use the lowest model sufficient for the task:
   - Routine edits, event dates, copy changes → Haiku (fastest, cheapest)
   - Drafting emails, grant writing, summaries → Sonnet
