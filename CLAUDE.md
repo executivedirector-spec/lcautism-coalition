@@ -2,6 +2,40 @@
 
 This file tells Claude how to behave on this repo. Read it on every session.
 
+## This computer — Michelle's setup
+
+- **Who:** Michelle Whitlow, Executive Director, Lewis County Autism Coalition
+- **Project folder:** `C:\Users\miche\Documents\LCAC\`
+- **Desktop org folder:** `C:\Users\miche\Desktop\Lewis County Autism Coalition\` (meeting notes, budget, events, etc.)
+- **Plan:** $20/month — be token-efficient. Flag any large operations to hand off to Ben.
+- **Model rule:** Always use the lowest model sufficient for the task:
+  - Routine edits, event dates, copy changes → Haiku (fastest, cheapest)
+  - Drafting emails, grant writing, summaries → Sonnet
+  - Deep research, complex strategy, creative work that needs to be excellent → Opus
+  - When unsure, start low and step up only if the output isn't good enough
+- **GitHub:** fully set up — pushes to `executivedirector-spec/lcautism-coalition`
+- **Vercel project ID:** `prj_anWUadO9L6KK1gWKf86kvoOjBXAl` — token in `.env.local`
+- **After every push:** call the Vercel API and drop the clickable preview link in the chat using PowerShell:
+  ```powershell
+  $t = (Get-Content .env.local | Select-String "VERCEL_TOKEN").ToString().Split("=")[1]
+  $h = @{ Authorization = "Bearer $t" }
+  $d = Invoke-RestMethod -Uri "https://api.vercel.com/v6/deployments?projectId=prj_anWUadO9L6KK1gWKf86kvoOjBXAl&limit=1" -Headers $h
+  "https://" + $d.deployments[0].url
+  ```
+
+## About LCAC (so you don't have to look it up)
+
+Lewis County Autism Coalition (LCAC) is a 501(c)(3) nonprofit in Napavine, WA (EIN 47-3931045).
+**Mission:** Promoting lifelong belonging and independence for autistic, neurodiverse, and developmentally disabled individuals and their families in rural Lewis County, Washington.
+**Programs:** Teen & Adult Social Groups, ASD Groups of Belonging, Summer Spectrum Camp, Cultivating Inclusion Celebration, Weighted Warmth Program, Micro-Grant Program, SMART Program, Entendiendo El Autismo, Court Support.
+**Home base:** Spectrum & Development Community Center (SDCC) — 5,000 sq ft in Napavine, co-located with Lewis County Pediatrics & Family Medicine.
+**Contacts:** info@lcautism.org | outreach@lcautism.org | executivedirector@lcautism.org | (360) 644-5222
+**Social:** Facebook only (no Instagram/YouTube/TikTok/X confirmed as of May 2026)
+**Website:** lcautism.org (currently on Squarespace/Wix; new Vercel site in progress)
+**CRM:** Supabase project `lcac-crm` (ref `byxuapnhhuxekamgnwaf`)
+
+
+
 ## Who you're working with
 
 The operator is **Ben's mom**. She is the LCAC executive director, NOT a developer. Treat every interaction with that in mind.
