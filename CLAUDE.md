@@ -5,6 +5,7 @@ This file tells Claude how to behave on this repo. Read it on every session.
 ## This computer — Michelle's setup
 
 - **Who:** Michelle Whitlow, Executive Director, Lewis County Autism Coalition
+- **Screenshots:** Always use the Chrome extension (mcp__Claude_in_Chrome__) to take screenshots — never use the preview server method. Browser 1 (Windows), deviceId: 180ed763-7bdc-447e-9649-fa6486ed20ee.
 - **Project folder:** `C:\Users\miche\Documents\LCAC\`
 - **Desktop org folder:** `C:\Users\miche\Desktop\Lewis County Autism Coalition\` (meeting notes, budget, events, etc.)
 - **Plan:** $20/month — be token-efficient. Flag any large operations to hand off to Ben.
