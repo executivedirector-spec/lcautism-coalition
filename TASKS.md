@@ -9,6 +9,12 @@ Last updated: 2026-06-01
 
 ## 🆕 NEW GAPS — added 2026-06-01 (strategic audit)
 
+### 🔴 BEN — Reconnect Vercel to Michelle's fork (do this first!)
+- Vercel is currently watching Ben's repo (`benfreemn-del/lcautism-coalition`)
+- Michelle's changes push to her fork (`executivedirector-spec/lcautism-coalition`) — Vercel doesn't see them
+- **Fix:** Vercel Dashboard → `lcautism-coalition` project → Settings → Git → reconnect to `executivedirector-spec/lcautism-coalition`
+- **Impact:** Until this is done, none of Michelle's changes show up on the preview link
+
 ### 🔴 MICHELLE — Stripe donate link
 - The `/donate` page on the preview site bounces to the old Wix URL — will infinite-loop after DNS flip
 - **Fix:** Michelle drops the donate link (from Stripe, PayPal, or whatever processor LCAC uses) into the chat → Claude adds it to the site in 2 minutes
