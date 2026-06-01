@@ -16,6 +16,25 @@ That's it. Now you just talk in plain English.
 
 ---
 
+## ⚡ Quick shortcuts (just type the word with a slash)
+
+You can type any of these and press enter — Claude knows what to do:
+
+| Type this | What it does |
+|---|---|
+| `/morning-brief` | Tells you what needs attention today (changes nothing) |
+| `/add-event` | Walks you through adding an event |
+| `/swap-photo` | Walks you through replacing a photo |
+| `/thank-donor` | Writes a thank-you note for you to send |
+| `/find-grants` | Searches the web for grants LCAC might qualify for |
+| `/draft-grant` | Writes a first draft of a grant application |
+| `/preview` | Saves your change to a preview link to look at — NOT live yet |
+| `/push-live` | After you like the preview, makes it live on the website |
+
+**The safe way to make a change:** make your edit → type `/preview` → open the link Claude gives you → if it looks right, type `/push-live`. Nothing goes live until you say so.
+
+---
+
 ## Common things you'll want to do — copy these prompts
 
 ### 🆕 Add a new event

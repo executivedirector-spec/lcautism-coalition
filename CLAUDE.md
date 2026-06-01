@@ -104,15 +104,35 @@ If a form stops working, FIRST check that the access_key hidden field has a real
 
 ## Commits + pushing
 
-When mom approves a change:
+The site uses a **preview-first** flow so nothing goes live unreviewed. Two shortcuts handle this:
+
+- **`/preview`** — commits mom's change to a working branch (never `main`), pushes it, and gives her a Vercel preview link to look at. NOT live yet.
+- **`/push-live`** — after she's happy with the preview, confirms once more, then merges to `main` and pushes so it goes live (~60s).
+
+Normal flow: make the edit → show plain-English diff → `/preview` → she reviews the link → she says "push live" → `/push-live`.
+
+If you do it by hand instead of via the shortcuts, the same rules apply — commit one file at a time with a plain-English message, work on a branch (not `main`), and ALWAYS ask "Ready to push this live? Type 'yes'." before merging to `main` (rule 3).
 
 ```bash
+git switch -c edits              # work on a branch, never straight on main
 git add path/to/file.html
 git commit -m "Plain-English description of what changed"
-# THEN ASK: "Ready to push this live?"
-# If yes:
-git push origin main
+git push -u origin edits         # → Vercel preview link
+# THEN ASK: "Ready to push this live? Type 'yes'."
+# If yes: merge edits → main and push main
 ```
+
+## Shortcuts mom can use (slash commands in `.claude/commands/`)
+
+- `/morning-brief` — read-only start-of-day summary of what needs attention
+- `/add-event` — add an event to the events page
+- `/swap-photo` — replace a photo on a page
+- `/thank-donor` — draft a donor thank-you (writes words only; she sends it herself)
+- `/find-grants` — search the web for grants LCAC may qualify for (no paid tools)
+- `/draft-grant` — write a first draft of a grant application
+- `/preview` and `/push-live` — the review-then-go-live flow above
+
+These are safe by design: nothing here sends email, spends money, or pushes live without her confirmation.
 
 If a push fails (auth issue, conflict), STOP and tell mom: "I hit an error pushing. Could you text Ben?" Don't try to force it. Don't try to resolve a merge conflict alone — that's an escalation.
 
