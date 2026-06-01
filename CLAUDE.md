@@ -17,6 +17,7 @@ This file tells Claude how to behave on this repo. Read it on every session.
   - When unsure, start low and step up only if the output isn't good enough
 - **GitHub:** fully set up — pushes to `executivedirector-spec/lcautism-coalition`
 - **Vercel project ID:** `prj_anWUadO9L6KK1gWKf86kvoOjBXAl` — token in `.env.local`
+- **🚨 Preview link rule:** NEVER drop a preview link unless you have JUST pushed the changes in the same response. No push = no link. Always push first, then fetch the URL, then drop the link.
 - **After every push:** call the Vercel API and drop the clickable preview link in the chat using PowerShell:
   ```powershell
   $t = (Get-Content .env.local | Select-String "VERCEL_TOKEN").ToString().Split("=")[1]
