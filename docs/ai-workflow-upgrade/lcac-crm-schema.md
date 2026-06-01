@@ -1,6 +1,6 @@
 # LCAC CRM — Database Schema (Design Document)
 
-**Status:** Design only. **Not applied.** No Supabase project created, no migration run.
+**Status:** ✅ **APPLIED 2026-06-01** to Supabase project `lcac-crm` (`byxuapnhhuxekamgnwaf`, us-west-1) via migration `lcac_crm_initial_schema`. Verified locked down: anon cannot read any PII table; anon INSERT works only on `event_rsvps` + `contact_form_submissions`; 0 "allow everyone" readable policies.
 **Date:** 2026-06-01
 **Target:** A **new, dedicated, standalone Supabase project** for the Lewis County Autism Coalition CRM — clean blast radius, its own keys, no law-enforcement or agency data anywhere near it (see `backend-review-snapshot.md` for why we are NOT reusing project `obemgxqczuifpndzutku`).
 
