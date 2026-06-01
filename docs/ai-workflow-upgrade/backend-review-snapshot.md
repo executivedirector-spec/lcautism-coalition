@@ -1,45 +1,59 @@
-# Backend Review — Snapshot (read-only)
+# Backend Review — Audit (read-only)
 
 **Date:** 2026-06-01
-**Project:** Supabase `obemgxqczuifpndzutku` ("benfreemn-del's Project"), Postgres 17, us-east-2, ACTIVE_HEALTHY.
-**Method:** Read-only inspection via Supabase MCP (`list_tables`, `list_edge_functions`, `get_advisors` security). **No changes made.**
-
-> ⚠️ This is a snapshot, NOT a full audit. A real audit means reading each table's RLS policies, the edge function source, and the data-access path (anon key vs. service role). Flagged as a separate task.
+**Project:** Supabase `obemgxqczuifpndzutku` ("benfreemn-del's Project"), Postgres 17, us-east-2.
+**Method:** Read-only via Supabase MCP — `list_tables`, `list_edge_functions`, `get_advisors`, `get_edge_function` (read source), and direct `pg_policies` / `has_table_privilege` queries. **No changes made. No row data exfiltrated.**
 
 ---
 
-## What this backend actually is
+## 🚩 Headline: this is NOT an LCAC backend
 
-Not a small LCAC database — it's the **broader BlueJays agency platform**: 130+ tables in `public`. Examples: `agency_applications` (37 cols), `agency_customers`, dozens of `client_*` tables (leads, subscriptions, ad creatives, bookings, stripe connections, api keys), `prospects` (95 cols), `hormozi_kb_chunks`, `hyperloop_*` experiment tables, `outbox`, `delivery_attempts`.
+The edge-function source makes it clear what this database is — and it's three unrelated things sharing one project:
 
-**Implication:** LCAC's CRM should be either a **scoped schema/views** inside this, or a **separate clean project**. Don't point LCAC's public site at this shared platform without scoping. (Decision for Ben — noted in PACKAGE-SCOPE.md, Module B.)
+1. **A Washington State Patrol DUI report drafter** — `inbound-email` generates DUI Report-of-Investigation packets for **Trooper Benjamin Freeman, Badge #695, WSP**. Tables: `cases`, `case_attachments`, `report_library`, `processing_log`. **This holds real law-enforcement PII** (DUI suspect facts, blood/alcohol results).
+2. **The BlueJays agency/marketing platform** — 100+ `client_*`, `agency_*`, `prospects`, `hormozi_*`, `hyperloop_*` tables.
+3. **No LCAC tables at all.**
 
-## Email pipeline — already partially built ✅
-- Edge functions: `inbound-email` (v23, active), `read-storage` (v3, active). Both have `verify_jwt: false`.
-- Tables: `emails`, `queued_replies` (14 cols), `email_events`, `email_retry_queue`, `outbox`, `delivery_attempts`, `channel_health`.
-- This is a real head start on the **Inbox Co-Pilot (Module C)**. Needs source review + voice profile + approval UI.
+**Conclusion:** Nothing LCAC should ever point at this project. LCAC's CRM/email needs its **own dedicated Supabase project** (clean blast radius, separate keys, no law-enforcement data nearby). The "backend we already built" is real — but it's for the WSP + agency products, not the coalition.
 
-## Security advisories — 176 total (the "functions check")
+---
 
-| Level | Issue | Count | What it means |
-|---|---|---|---|
-| WARN | `rls_policy_always_true` | **20** | Policies that evaluate to TRUE for everyone. If reachable with the anon/public key, **anyone can read/write those tables.** Highest concern if any hold PII. |
-| INFO | `rls_enabled_no_policy` | **112** | RLS on, but no policy = denies all by default. **Safe only if** access is exclusively via the service role (server-side). If any client uses the anon key against these, they're locked out. |
-| WARN | `function_search_path_mutable` | 40 | Functions without a fixed `search_path` — a privilege-escalation hardening gap. Routine fix (`SET search_path = ...`). |
-| WARN | `anon_security_definer_function_executable` | 2 | `SECURITY DEFINER` functions the anon role can call — review what they do. |
-| WARN | `authenticated_security_definer_function_executable` | 2 | Same, for authenticated role. |
+## 🔴 Confirmed exposure: ~20 tables readable/writable with the public key
 
-`verify_jwt: false` on both edge functions is fine **if** they do their own auth (e.g. a webhook signature / shared secret) — needs confirming in the source.
+**Root cause:** 20 policies named *"Allow all for service role"* were created `TO public USING (true)` instead of `TO service_role`. The Postgres `public` role includes `anon`/`authenticated`, and those roles **do** hold table grants here (verified via `has_table_privilege`). A permissive `ALL USING(true)` policy `TO public` therefore lets **anyone with the project's publishable/anon key** read **and write** these tables over the REST API.
 
-## Verdict for "is the backend functional / ready?"
+This is the classic Supabase footgun. The service role **bypasses RLS anyway**, so these policies were never needed for the edge functions — they only created the hole.
 
-- **Functional / healthy:** yes — project is up, schema is rich, email plumbing exists.
-- **Safe to put real LCAC donor/family PII behind a public site:** **not yet.** The 20 `rls_policy_always_true` policies and the anon-vs-service-role access path must be verified first.
+**Exposed tables (contain PII / business data):**
+`emails`, `queued_replies`, `email_events`, `prospects`, `notes`, `referrals`, `proposals`, `sms_messages`, `voicemail_drops`, `calendar_bookings`, `change_requests`, `edit_requests`, `funnel_enrollments`, `generated_sites`, `onboarding`, `pipeline_batches`, `preview_visits`, `priority_call_list`, `system_costs`, `scheduled_tasks`.
 
-## Recommended next steps (separate task, in priority order)
-1. Read the 20 `rls_policy_always_true` policies — identify which tables hold PII and whether the anon key can reach them. Tighten.
-2. Confirm `inbound-email` / `read-storage` do their own auth (since `verify_jwt:false`).
-3. Decide LCAC CRM = scoped views here, or a separate project.
-4. Add `SET search_path` to the 40 flagged functions (low-risk hardening).
-5. Re-run `get_advisors` (security + performance) after fixes.
-6. Then — and only then — wire any LCAC-facing CRM/UI to it.
+Several hold contact PII (email bodies, phone/SMS, voicemails, prospect records) — readable by anyone with the key, and `ALL` means **writable/deletable** too.
+
+## ✅ What's safe
+
+The most sensitive tables are **locked correctly** — RLS on, **zero** permissive policies, so RLS denies the anon role despite the grant existing:
+`cases`, `case_attachments`, `report_library`, `processing_log` (WSP law-enforcement data), and `client_credentials`, `client_api_keys`, `client_stripe_connections`, `bluejays_users`, `agency_applications`, `agency_customers`.
+So the worst-case data (DUI cases, API keys, Stripe connections) is **not** exposed. Good.
+
+## Edge functions — auth verified
+
+Both run `verify_jwt: false` but **do their own auth**, so that's fine:
+- `inbound-email` — `verifyAuth()` checks a Postmark Basic-auth user/pass or a Bearer `READ_STORAGE_TOKEN`; rejects otherwise. Also has an `ALLOWED_SENDERS` allowlist. Uses the **service role key** server-side.
+- `read-storage` — `verifyBearer()` requires a Bearer `READ_STORAGE_TOKEN`; rejects if unset. (Note: it exposes a `write` action that upserts to storage — fine behind the token, but it's a powerful endpoint.)
+
+## Other advisories (lower priority)
+- `function_search_path_mutable` ×40 — add `SET search_path = ''` to those functions (hardening).
+- 112 tables RLS-on/no-policy — safe **as long as** access stays service-role-only.
+
+---
+
+## Remediation plan (NOT yet applied — needs Ben's input first)
+
+The fix differs per table, which is why I did **not** auto-apply anything:
+
+- **Service-role-only tables** (no public frontend should touch them): **drop** the `TO public USING(true)` policy. They become deny-all to anon, like the safe tables. Nothing breaks because the edge functions use the service role.
+  → Likely: `emails`, `queued_replies`, `email_events`, `prospects`, `sms_messages`, `voicemail_drops`, `proposals`, `pipeline_batches`, `priority_call_list`, `system_costs`, `scheduled_tasks`, `referrals`, `notes`.
+- **Genuine public-intake tables** (if a funnel/landing page writes to them with the anon key): replace `ALL USING(true)` with a **scoped** policy — e.g. anon `INSERT` only, no `SELECT` — so the public can submit but can't read everyone's data.
+  → Possibly: `preview_visits`, `cta_clicks`, `edit_requests`, `change_requests`, `onboarding`, `funnel_enrollments`, `calendar_bookings`, `generated_sites`.
+
+**Open question for Ben:** which of the second group are written by a public frontend with the anon key? That determines drop-vs-scope per table. Once you tell me, I'll prepare a single migration and apply it only on your go.
