@@ -7,7 +7,7 @@ Print this. Keep it next to your laptop.
 1. Open Terminal (search "Terminal" or "PowerShell" on Windows)
 2. Type these two lines:
    ```
-   cd "C:\path\to\lcautism-coalition"
+   cd "C:\Users\miche\Documents\LCAC"
    claude
    ```
 3. Wait for Claude to say something like "What would you like to work on today?"
