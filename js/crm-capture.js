@@ -113,8 +113,9 @@
       var address = val(form, "address");
       if (address) parts.push("Address: " + address);
       message = parts.join(" | ");
-    } else if (subjectLabel === "Sponsor inquiry") {
-      // Sponsor form has no message field — summarize the key details.
+    } else if (/sponsor/i.test(subjectLabel)) {
+      // Sponsor forms (general, Santa Shop, Teal Pumpkin) have no message
+      // field — summarize the key details.
       var sparts = [];
       var business = val(form, "business");
       if (business) sparts.push("Business: " + business);
@@ -129,6 +130,33 @@
 
     row.message = nonEmpty(message, subjectLabel + " (no additional details)");
     insertRow("contact_form_submissions", row);
+  }
+
+  // Event scholarship application → contact_form_submissions (summarized).
+  function captureScholarship(form) {
+    var parts = [];
+    var ev = val(form, "event_name_applying_for");
+    if (ev) parts.push("Event: " + ev);
+    var interest = val(form, "interest");
+    if (interest) parts.push("Interest: " + interest);
+    var need = val(form, "financial_need");
+    if (need) parts.push("Financial need: " + need);
+    var amt = val(form, "full_or_partial");
+    if (amt) parts.push("Requested: " + amt);
+    var accom = val(form, "accommodations");
+    if (accom) parts.push("Accommodations: " + accom);
+    var addr = [val(form, "street_address"), val(form, "city_state"), val(form, "zip_code")]
+      .filter(function (p) { return p; }).join(", ");
+    if (addr) parts.push("Address: " + addr);
+
+    insertRow("contact_form_submissions", {
+      name: nonEmpty(fullName(form), "(no name provided)"),
+      email: val(form, "email"),
+      phone: val(form, "phone"),
+      subject: "Event scholarship application",
+      message: nonEmpty(parts.join(" | "), "Event scholarship application (no details)"),
+      source_page: location.pathname
+    });
   }
 
   // RSVP modal goes to event_rsvps.
@@ -167,6 +195,15 @@
           break;
         case "Sponsor":
           captureContactLike(form, "Sponsor inquiry");
+          break;
+        case "SantaSponsor":
+          captureContactLike(form, "Santa Shop sponsor inquiry");
+          break;
+        case "TealPumpkinSponsor":
+          captureContactLike(form, "Teal Pumpkin sponsor inquiry");
+          break;
+        case "Event-Scholarship":
+          captureScholarship(form);
           break;
         case "RSVP":
           captureRsvp(form);
