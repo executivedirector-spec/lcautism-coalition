@@ -46,6 +46,16 @@
 
 ---
 
+## 🖥️ CRM status — standalone Supabase ✅, Vercel = decide on-site
+
+- **Supabase: standalone & done.** Dedicated `lcac-crm` project, schema applied, verified locked down. **Whatever CRM front-end we end up using must point at THIS project** (not a new, unaudited one) so we keep the secure RLS model.
+- **A working CRM admin app is built** at `crm-admin/` in this repo (login-gated, 6 tabs). Because it lives in the site repo it will deploy with the site at **`/crm-admin/`** (e.g. `lcautism.org/crm-admin/`) — safe, since it requires a Supabase Auth login and the publishable key can't read any PII. **First login user must be created in the Supabase dashboard** (Authentication → Users).
+- **"Standalone in Vercel":** not strictly required — `/crm-admin/` works as-is. If you want it on its own project/subdomain (e.g. `crm.lcautism.org`), that's a Vercel dashboard step (point a new project at this folder or a split repo). **Hold on that until the employee's CRM lands** so we don't build something we throw away.
+
+## 📥 Incoming: employee's CRM-lookalike project
+- An employee already built a CRM-style project on Claude; Ben will **transfer it over to use as the starting point.**
+- **Plan when it arrives:** compare it to `crm-admin/` + the `lcac-crm-schema.md`; adopt whichever UI is stronger; **wire the chosen one to the secure `lcac-crm` Supabase project**; re-run the security checks (anon can't read PII; intake INSERT-only) before any real data goes in. Treat `crm-admin/` as a reference/fallback.
+
 ## ⏭️ Open decisions / next builds (not blocking tomorrow)
 - **Email co-pilot cost decision** (PACKAGE-SCOPE §5): pick Option 1/2/3 before building auto-draft replies. Needs a paid LLM API — conflicts with the "no paid-usage APIs" rule unless capped on purpose.
 - **CRM UI:** the database is ready; a simple admin interface (and form wiring) is the next build for Module B.
