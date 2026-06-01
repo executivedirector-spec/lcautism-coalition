@@ -47,9 +47,17 @@ Both run `verify_jwt: false` but **do their own auth**, so that's fine:
 
 ---
 
-## Remediation plan (NOT yet applied — needs Ben's input first)
+## ✅ REMEDIATION APPLIED — 2026-06-01
 
-The fix differs per table, which is why I did **not** auto-apply anything:
+Migration `drop_public_allow_all_policies_close_anon_exposure` dropped all 20 `TO public USING(true)` policies. Post-check confirms **0** permissive public/anon policies remain in `public`. Every one of those tables is now RLS-on + no-policy = **deny-all to the anon key**; the service-role edge functions are unaffected.
+
+**⚠️ Watch for:** if any public landing page / funnel was writing to `preview_visits`, `cta_clicks`, `edit_requests`, `change_requests`, `onboarding`, `funnel_enrollments`, `calendar_bookings`, or `generated_sites` using the anon key, that write path is now blocked. If something breaks, the fix is a **scoped** policy on just that table (anon `INSERT` only, no `SELECT`) — ping me and I'll add it. Rollback of any single drop is trivial if needed.
+
+---
+
+## Original remediation plan (for reference / re-scoping intake tables)
+
+The fix differed per table:
 
 - **Service-role-only tables** (no public frontend should touch them): **drop** the `TO public USING(true)` policy. They become deny-all to anon, like the safe tables. Nothing breaks because the edge functions use the service role.
   → Likely: `emails`, `queued_replies`, `email_events`, `prospects`, `sms_messages`, `voicemail_drops`, `proposals`, `pipeline_batches`, `priority_call_list`, `system_costs`, `scheduled_tasks`, `referrals`, `notes`.
