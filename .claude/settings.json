@@ -1,0 +1,40 @@
+{
+  "permissions": {
+    "deny": [
+      "Bash(rm:*)",
+      "Bash(rmdir:*)",
+      "Bash(git push --force:*)",
+      "Bash(git push -f:*)",
+      "Bash(git push --force-with-lease:*)",
+      "Bash(git reset --hard:*)",
+      "Bash(git clean:*)",
+      "Bash(git branch -D:*)",
+      "Bash(sudo:*)",
+      "Bash(npm install:*)",
+      "Bash(npm i:*)",
+      "Bash(npm uninstall:*)",
+      "Bash(yarn add:*)",
+      "Bash(pnpm add:*)",
+      "Bash(pip install:*)",
+      "Bash(brew install:*)"
+    ],
+    "ask": [
+      "Bash(git push:*)",
+      "Bash(git merge:*)",
+      "Bash(git checkout main:*)",
+      "Bash(git switch main:*)",
+      "Bash(curl:*)",
+      "Bash(wget:*)",
+      "Edit(js/main.js)",
+      "Write(js/main.js)",
+      "Edit(css/styles.css)",
+      "Write(css/styles.css)",
+      "Edit(vercel.json)",
+      "Write(vercel.json)",
+      "Edit(.gitignore)",
+      "Write(.gitignore)",
+      "Edit(package.json)",
+      "Write(package.json)"
+    ]
+  }
+}
