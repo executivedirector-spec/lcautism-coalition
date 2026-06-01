@@ -9,9 +9,10 @@ Last updated: 2026-06-01
 
 ## 🆕 NEW GAPS — added 2026-06-01 (strategic audit)
 
-### 🔴 BEN — Stripe donate link
+### 🔴 MICHELLE — Stripe donate link
 - The `/donate` page on the preview site bounces to the old Wix URL — will infinite-loop after DNS flip
-- **Fix:** Set up Stripe Donate (or existing processor from live Wix site) and update `pages/donate.html` CTA href
+- **Fix:** Michelle drops the donate link (from Stripe, PayPal, or whatever processor LCAC uses) into the chat → Claude adds it to the site in 2 minutes
+- **How to find it:** Log into your donation processor → find your public donate page URL → paste it here and say "add this as our donate link"
 - **Why it matters:** Every person who wants to donate hits a dead end. Highest-revenue fix on the list.
 
 ### 🔴 BEN — DNS flip (lcautism.org → Vercel)
