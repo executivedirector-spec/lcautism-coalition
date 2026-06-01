@@ -1,6 +1,8 @@
 # Email Co-Pilot — Build Plan (Module C)
 
-**Status:** Plan only — not built. This is a from-scratch build that needs (a) a cost decision and (b) live mailbox access + secrets, so it can't be responsibly completed/deployed remotely. This document is the blueprint to execute on-site or in a focused build session.
+**Status:** ✅ **DECISION (2026-06-01, Ben at office): Option 1 chosen** — always-on drafting in her voice with a hard monthly spend cap. Still a from-scratch build that needs mailbox access + a capped LLM key + secrets, so it gets built in a focused session (partly on-site). The rest of this doc is the blueprint.
+
+**To build Option 1, we still need:** (1) the mailboxes confirmed (info@ / outreach@ / executivedirector@) and whether they're Google Workspace; (2) inbound-parse vs Gmail API decided; (3) a paid LLM key with a hard cap set (e.g. $10–20/mo) + usage logging; (4) the approval UI tab in the CRM. **Nothing auto-sends — ever; she approves every reply.**
 
 **Goal:** incoming emails to LCAC get a draft reply written *in Michelle's voice*; she reviews and approves; only approved replies send. She goes from "write every email" to "skim and click approve."
 
